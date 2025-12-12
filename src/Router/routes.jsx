@@ -13,6 +13,16 @@ import CreateEvent from "../Pages/CreateEvent";
 import EventDetails from "../Pages/EventDetails";
 import SuccesPage from "../Pages/SuccesPage";
 import PaymentCancelled from "../Pages/PaymentCancelled";
+import ManagerOverview from "../Pages/ManagerOverview";
+import EventsMannegement from "../Pages/EventsMannegement";
+import UpdateEvent from "../Pages/UpdateEvent";
+import EventRegistrations from "../Pages/EventRegistrations";
+import MyClubs from "../Pages/MyClubs";
+import CreateClub from "../Pages/CreateClub";
+import UpdateClub from "../Pages/UpdateClub";
+import ClubMembers from "../Pages/ClubMembers";
+import PrivateRoute from "./PrivateRoute";
+import ClubManagerRoute from "./ClubManagerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -59,15 +69,47 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    Component: DashBoardLayout,
+    element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
     children: [
       {
         index: true,
-        element: <h2>This is Dashboard Home</h2>
+        element: <PrivateRoute><h2>This is Dashboard Home</h2></PrivateRoute>
+      },
+      {
+        path: 'my-clubs',
+        element: <ClubManagerRoute><MyClubs></MyClubs></ClubManagerRoute>
+      },
+      {
+        path: 'update-club/:id',
+        element: <ClubManagerRoute><UpdateClub></UpdateClub></ClubManagerRoute>
+      },
+      {
+        path: 'manager-overview',
+        element: <ClubManagerRoute><ManagerOverview></ManagerOverview></ClubManagerRoute>
+      },
+      {
+        path: 'create-club',
+        element: <ClubManagerRoute><CreateClub></CreateClub></ClubManagerRoute>
       },
       {
         path: 'create-event',
-        Component: CreateEvent
+        element: <ClubManagerRoute><CreateEvent></CreateEvent></ClubManagerRoute>
+      },
+      {
+        path: 'club-members',
+        element: <ClubManagerRoute><ClubMembers></ClubMembers></ClubManagerRoute>
+      },
+      {
+        path: 'events-management',
+        element: <ClubManagerRoute><EventsMannegement></EventsMannegement></ClubManagerRoute>
+      },
+      {
+        path: 'update-event/:id',
+        element: <ClubManagerRoute><UpdateEvent></UpdateEvent></ClubManagerRoute>
+      },
+      {
+        path: 'event-registrations',
+        element: <EventRegistrations></EventRegistrations>
       },
       {
         path: 'payment-success',

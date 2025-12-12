@@ -1,69 +1,35 @@
-import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import useAuth from '../hooks/useAuth';
+import { useNavigate, useParams } from 'react-router';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
-import Swal from "sweetalert2";
-import UseAxiosSecure from "../hooks/useAxiosSecure";
-import { useNavigate } from "react-router";
-import useAuth from "../hooks/useAuth";
-
-const CreateEvent = ({ clubId }) => {
-    const axiosSecure = UseAxiosSecure();
-    const navigate = useNavigate();
-    const {user} = useAuth();
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
-
-    const isPaid = watch("isPaid");
-
-    const { data: clubs = [] } = useQuery({
-        queryKey: ['clubs'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/clubs?status=approved&email=${user.email}`)
-            return res.data
-        }
-    })
-
-    // --- Submit Handler ---
-    const handleCreateEvent = (data) => {
+const UpdateEvent = () => {
+    const axiosSecure = useAxiosSecure();
+    const {id} = useParams();
+    console.log(id);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const handleUpdateEvent = (data) => {
         const eventData = {
             ...data,
             isPaid: data.isPaid === "true",
             eventFee: data.isPaid === "true" ? Number(data.eventFee) : 0,
             eventDate: new Date(data.eventDate),
             maxAttendees: Number(data.maxAttendees) || null,
-            createdAt: new Date(),
         };
-        console.log(eventData)
-        axiosSecure.post('/events', eventData).then((res) => {
-            console.log(res.data);
+        axiosSecure.patch(`/events/${id}`, eventData).then(res => {
+            console.log(res.data)
         })
-    };
+    }
 
     return (
         <div className="max-w-3xl mx-auto p-6 bg-base-200 rounded-xl shadow-md mt-10">
             {/* Form Title */}
-            <h2 className="text-2xl font-bold mb-6 text-center">Create New Event</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">Update Event</h2>
 
             {/* Form */}
-            <form onSubmit={handleSubmit(handleCreateEvent)} className="space-y-4">
-                {/* Club Selection */}
-                <div>
-                    <label className="font-medium">Select a Club</label>
-                    <select
-                        className="select select-bordered w-full"
-                        {...register("clubId", { required: "Please select a club" })}
-                        defaultValue=""
-                    >
-                        <option value="" disabled>
-                            -- Choose a Club --
-                        </option>
-                        {clubs.map((club) => (
-                            <option key={club._id} value={club._id}>
-                                {club.clubName}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.clubId && <p className="text-red-500 text-sm">{errors.clubId.message}</p>}
-                </div>
+            <form onSubmit={handleSubmit(handleUpdateEvent)} className="space-y-4">
+
 
                 {/* Title */}
                 <div>
@@ -121,7 +87,7 @@ const CreateEvent = ({ clubId }) => {
                 </div>
 
                 {/* Event Fee (only if paid) */}
-                {isPaid === "true" && (
+                {
                     <div>
                         <label className="font-medium">Event Fee</label>
                         <input
@@ -133,7 +99,7 @@ const CreateEvent = ({ clubId }) => {
                         />
                         {errors.eventFee && <p className="text-red-500 text-sm">{errors.eventFee.message}</p>}
                     </div>
-                )}
+                }
 
                 {/* Max Attendees (optional) */}
                 <div>
@@ -150,13 +116,12 @@ const CreateEvent = ({ clubId }) => {
                 {/* Submit */}
                 <div className="text-center">
                     <button className="btn btn-primary px-6" type="submit">
-                        Create Event
+                        Update Event
                     </button>
                 </div>
             </form>
         </div>
-
     );
 };
 
-export default CreateEvent;
+export default UpdateEvent;
