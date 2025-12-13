@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router';
 import UseRole from '../hooks/useRole';
 import { MdEvent } from 'react-icons/md';
 import { GrOverview } from "react-icons/gr";
+import { CiViewColumn } from "react-icons/ci";
 
 const DashBoardLayout = () => {
 
@@ -127,6 +128,15 @@ const DashBoardLayout = () => {
                                     </li>
                                 </>
                             }
+
+                            <li>
+                                <Link to='/dashboard/member-overview'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Member Overview">
+                                        <CiViewColumn />
+                                        <span className="is-drawer-close:hidden">Member Overview</span>
+                                    </button>
+                                </Link>
+                            </li>
 
                         </ul>
                     </div>

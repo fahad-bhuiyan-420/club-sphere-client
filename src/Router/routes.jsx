@@ -28,6 +28,7 @@ import AdminOverView from "../Pages/AdminOverView";
 import ManageUsers from "../Pages/ManageUsers";
 import ManageClubs from "../Pages/ManageClubs";
 import ViewPayments from "../Pages/ViewPayments";
+import MemberOverview from "../Pages/MemberOverview";
 
 export const router = createBrowserRouter([
   {
@@ -131,6 +132,10 @@ export const router = createBrowserRouter([
       {
         path: 'view-payments',
         element: <AdminRoute><ViewPayments></ViewPayments></AdminRoute>
+      },
+      {
+        path: 'member-overview',
+        Component: MemberOverview
       },
       {
         path: 'payment-success',
