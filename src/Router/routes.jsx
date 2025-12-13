@@ -23,6 +23,11 @@ import UpdateClub from "../Pages/UpdateClub";
 import ClubMembers from "../Pages/ClubMembers";
 import PrivateRoute from "./PrivateRoute";
 import ClubManagerRoute from "./ClubManagerRoute";
+import AdminRoute from "./AdminRoute";
+import AdminOverView from "../Pages/AdminOverView";
+import ManageUsers from "../Pages/ManageUsers";
+import ManageClubs from "../Pages/ManageClubs";
+import ViewPayments from "../Pages/ViewPayments";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +115,22 @@ export const router = createBrowserRouter([
       {
         path: 'event-registrations',
         element: <EventRegistrations></EventRegistrations>
+      },
+      {
+        path: 'admin-overview',
+        element: <AdminRoute><AdminOverView></AdminOverView></AdminRoute>
+      },
+      {
+        path: 'manage-users',
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+      },
+      {
+        path: 'manage-clubs',
+        element: <AdminRoute><ManageClubs></ManageClubs></AdminRoute>
+      },
+      {
+        path: 'view-payments',
+        element: <AdminRoute><ViewPayments></ViewPayments></AdminRoute>
       },
       {
         path: 'payment-success',

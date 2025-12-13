@@ -1,17 +1,14 @@
 import React from 'react';
 import Banner from './Banner';
-import Marquee from 'react-fast-marquee';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../hooks/useAxios';
-import useAuth from '../hooks/useAuth';
-import UseRole from '../hooks/useRole';
 
 
 const Home = () => {
-    const {user} = useAuth();
-    console.log(user);
     const axiosInstance = useAxios();
-    const {role, isLoading} = UseRole()
+  
+    
+
 
     const { data: clubs = [] } = useQuery({
         queryKey: ['clubs'],

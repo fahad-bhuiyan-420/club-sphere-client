@@ -1,5 +1,6 @@
 import React from 'react';
 import UseRole from '../hooks/useRole';
+import Loading from '../Components/Loading';
 
 const AdminRoute = ({children}) => {
 
