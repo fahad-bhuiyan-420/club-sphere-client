@@ -3,11 +3,10 @@ import useAuth from '../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import Loading from '../Components/Loading';
-import { Link, useNavigate } from 'react-router';
+import { Link,  } from 'react-router';
 import Swal from 'sweetalert2';
 
 const EventsMannegement = () => {
-    const navigate = useNavigate();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: events = [], isLoading, refetch } = useQuery({
@@ -22,9 +21,6 @@ const EventsMannegement = () => {
         return <Loading></Loading>
     }
 
-    const handleCreateEvent = () => {
-        navigate('/dashboard/create-event')
-    }
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -54,9 +50,13 @@ const EventsMannegement = () => {
     console.log(events)
     return (
         <div>
+
             <div className="flex justify-center  my-5 ">
-                <button onClick={handleCreateEvent} className="btn btn-accent w-full">Create Event</button>
+                <Link to='/dashboard/create-event'>
+                    <button className="btn btn-accent w-full">Create Event</button>
+                </Link>
             </div>
+
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}

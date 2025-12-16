@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router';
 import UseRole from '../hooks/useRole';
-import { MdEvent } from 'react-icons/md';
+import { MdAppRegistration, MdEvent, MdHistoryEdu, MdManageAccounts, MdOutlinePayments, MdPayment } from 'react-icons/md';
 import { GrOverview } from "react-icons/gr";
 import { CiViewColumn } from "react-icons/ci";
+import { SiBookmyshow,  SiManageiq, SiPhotocrowd, SiUnacademy } from "react-icons/si";
+import { FaCcDinersClub, FaUsers } from "react-icons/fa";
+
 
 const DashBoardLayout = () => {
 
@@ -44,123 +47,131 @@ const DashBoardLayout = () => {
 
                             {
                                 role === 'club_manager' && <>
-                                    <li>
-                                        <Link to='/dashboard/manager-overview'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manager Overview">
-                                                {/* Settings icon */}
-                                                <MdEvent />
-                                                <span className="is-drawer-close:hidden">Manager Overview</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/my-clubs'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
-                                                {/* Settings icon */}
-                                                <MdEvent />
-                                                <span className="is-drawer-close:hidden">My Clubs</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/club-members'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Club Members">
-                                                {/* Settings icon */}
-                                                <MdEvent />
-                                                <span className="is-drawer-close:hidden">Club Members</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/events-management'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Event Management">
-                                                {/* Settings icon */}
-                                                <MdEvent />
-                                                <span className="is-drawer-close:hidden">Event Management</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/event-registrations'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Event Registrations">
-                                                {/* Settings icon */}
-                                                <MdEvent />
-                                                <span className="is-drawer-close:hidden">Event Registrations</span>
-                                            </button>
-                                        </Link>
-                                    </li>
+                                    <div className='my-5'>
+                                        <li>
+                                            <Link to='/dashboard/manager-overview'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manager Overview">
+                                                    {/* Settings icon */}
+                                                    <MdManageAccounts />
+                                                    <span className="is-drawer-close:hidden">Manager Overview</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/my-clubs'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                                    {/* Settings icon */}
+                                                    <FaCcDinersClub />
+                                                    <span className="is-drawer-close:hidden">My Clubs</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/club-members'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Club Members">
+                                                    {/* Settings icon */}
+                                                    <SiPhotocrowd />
+                                                    <span className="is-drawer-close:hidden">Club Members</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/events-management'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Event Management">
+                                                    {/* Settings icon */}
+                                                    <MdEvent />
+                                                    <span className="is-drawer-close:hidden">Event Management</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/event-registrations'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Event Registrations">
+                                                    {/* Settings icon */}
+                                                    <MdAppRegistration />
+                                                    <span className="is-drawer-close:hidden">Event Registrations</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                    </div>
                                 </>
                             }
 
                             {
                                 role === 'admin' && <>
-                                    <li>
-                                        <Link to='/dashboard/admin-overview'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Admin Overview">
-                                                <GrOverview></GrOverview>
-                                                <span className="is-drawer-close:hidden">Admin Overview</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/manage-users'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users">
-                                                <GrOverview></GrOverview>
-                                                <span className="is-drawer-close:hidden">Manage Users</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/manage-clubs'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Clubs">
-                                                <GrOverview></GrOverview>
-                                                <span className="is-drawer-close:hidden">Manage Clubs</span>
-                                            </button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/dashboard/view-payments'>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="View Payments">
-                                                <GrOverview></GrOverview>
-                                                <span className="is-drawer-close:hidden">View Payments</span>
-                                            </button>
-                                        </Link>
-                                    </li>
+                                    {/* <h2 className='text-xl font-bold text-center mt-5'>Admin Pages</h2> */}
+                                    <div className='my-5'>
+                                        <li>
+                                            <Link to='/dashboard/admin-overview'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Admin Overview">
+                                                    <GrOverview></GrOverview>
+                                                    <span className="is-drawer-close:hidden">Admin Overview</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/manage-users'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users">
+                                                    <FaUsers />
+                                                    <span className="is-drawer-close:hidden">Manage Users</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/manage-clubs'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Clubs">
+                                                    <SiManageiq />
+                                                    <span className="is-drawer-close:hidden">Manage Clubs</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/dashboard/view-payments'>
+                                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="View Payments">
+                                                    <MdOutlinePayments />
+                                                    <span className="is-drawer-close:hidden">View Payments</span>
+                                                </button>
+                                            </Link>
+                                        </li>
+                                    </div>
                                 </>
                             }
 
-                            <li>
-                                <Link to='/dashboard/member-overview'>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Member Overview">
-                                        <CiViewColumn />
-                                        <span className="is-drawer-close:hidden">Member Overview</span>
-                                    </button>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to='/dashboard/member/my-clubs'>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
-                                        <CiViewColumn />
-                                        <span className="is-drawer-close:hidden">My Clubs</span>
-                                    </button>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to='/dashboard/my-events'>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
-                                        <CiViewColumn />
-                                        <span className="is-drawer-close:hidden">My Events</span>
-                                    </button>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to='/dashboard/payment-history'>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
-                                        <CiViewColumn />
-                                        <span className="is-drawer-close:hidden">Payment History</span>
-                                    </button>
-                                </Link>
-                            </li>
+                            {/* <h2 className='text-xl font-bold text-center mt-5'>Member Pages</h2> */}
+                            <div className='my-5'>
+                                <li>
+                                    <Link to='/dashboard/member-overview'>
+                                        <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Member Overview">
+                                            <CiViewColumn />
+                                            <span className="is-drawer-close:hidden">Member Overview</span>
+                                        </button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/dashboard/member/my-clubs'>
+                                        <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                            <SiBookmyshow />
+                                            <span className="is-drawer-close:hidden">My Clubs</span>
+                                        </button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/dashboard/my-events'>
+                                        <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
+                                            <SiUnacademy />
+                                            <span className="is-drawer-close:hidden">My Events</span>
+                                        </button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/dashboard/payment-history'>
+                                        <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+                                            <MdHistoryEdu />
+                                            <span className="is-drawer-close:hidden">Payment History</span>
+                                        </button>
+                                    </Link>
+                                </li>
+                            </div>
 
                         </ul>
                     </div>

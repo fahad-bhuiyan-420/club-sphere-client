@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {  useQuery } from "@tanstack/react-query";
 
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../hooks/useAxiosSecure";
-import { useNavigate } from "react-router";
+
 import useAuth from "../hooks/useAuth";
 
-const CreateEvent = ({ clubId }) => {
+const CreateEvent = () => {
     const axiosSecure = UseAxiosSecure();
-    const navigate = useNavigate();
-    const {user} = useAuth();
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const { user } = useAuth();
+    const { register, handleSubmit, watch,  formState: { errors } } = useForm();
 
     const isPaid = watch("isPaid");
 
@@ -36,6 +35,12 @@ const CreateEvent = ({ clubId }) => {
         axiosSecure.post('/events', eventData).then((res) => {
             console.log(res.data);
         })
+
+        Swal.fire({
+            title: "Created!",
+            text: "Your Event has been Created.",
+            icon: "success"
+        });
     };
 
     return (

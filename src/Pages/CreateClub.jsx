@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const CreateClub = () => {
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const isPaid = watch('isPaid');
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth()
+    const { user } = useAuth()
     useEffect(() => {
         reset({})
     }, [])
@@ -20,10 +21,16 @@ const CreateClub = () => {
             managerEmail: user.email,
             createdAt: new Date(),
             updatedAt: new Date(),
-            
+
         }
 
         axiosSecure.post('/clubs', clubData);
+
+        Swal.fire({
+            title: "Created!",
+            text: "Your Club has been Created.",
+            icon: "success"
+        });
     }
 
     return (
@@ -101,20 +108,20 @@ const CreateClub = () => {
                 </div>
 
                 {/* Event Fee (only if paid) */}
-                { 
-                  isPaid === 'true' &&  (
-                    <div>
-                        <label className="font-medium">Membership Fee</label>
-                        <input
-                            type="number"
-                            min="1"
-                            placeholder="Event fee"
-                            className="input input-bordered w-full"
-                            {...register("membershipFee", { required: "Fee is required for paid clubs" })}
-                        />
-                        {errors.membershipFee && <p className="text-red-500 text-sm">{errors.membershipFee.message}</p>}
-                    </div>
-                )}
+                {
+                    isPaid === 'true' && (
+                        <div>
+                            <label className="font-medium">Membership Fee</label>
+                            <input
+                                type="number"
+                                min="1"
+                                placeholder="Event fee"
+                                className="input input-bordered w-full"
+                                {...register("membershipFee", { required: "Fee is required for paid clubs" })}
+                            />
+                            {errors.membershipFee && <p className="text-red-500 text-sm">{errors.membershipFee.message}</p>}
+                        </div>
+                    )}
 
 
 

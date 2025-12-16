@@ -2,18 +2,19 @@ import React from 'react';
 import Banner from './Banner';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../hooks/useAxios';
+import { Link } from 'react-router';
 
 
 const Home = () => {
     const axiosInstance = useAxios();
-  
-    
+
+
 
 
     const { data: clubs = [] } = useQuery({
         queryKey: ['clubs'],
         queryFn: async () => {
-            const res = await axiosInstance.get('/clubs')
+            const res = await axiosInstance.get('/clubs?sortedKey=createdAt&sortedValue=1')
             return res.data
         }
     })
@@ -43,7 +44,7 @@ const Home = () => {
                 }
             </div>
 
-            <button className='btn btn-accent w-full mb-10 font-bold text-2xl'>Click To See More Clubs</button>
+            <Link to='/clubs'><button className='btn btn-accent w-full mb-10 font-bold text-2xl'>Click To See More Clubs</button></Link>
 
 
         </div>

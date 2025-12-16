@@ -55,7 +55,7 @@ const ManageUsers = () => {
                             <td>{new Date(user.createdAt).toLocaleDateString("en-GB")}</td>
                             <td className='relative'>
                                 <div className="dropdown">
-                                    <div tabIndex={0} role="button" className="btn m-1">Choose Role</div>
+                                    <div tabIndex={0} role="button" className="btn btn-primary m-1">Choose Role</div>
                                     <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm overflow-visible gap-2">
                                         <button onClick={() => handleRole(user._id, 'admin')} className='btn btn-accent'> Admin</button>
                                         <button onClick={() => handleRole(user._id, 'club_manager')} className='btn btn-warning'> Club Manager</button >

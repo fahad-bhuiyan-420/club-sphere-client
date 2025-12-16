@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
 import Loading from '../Components/Loading';
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const EventRegistrations = () => {
     const axiosSecure = useAxiosSecure();
@@ -38,7 +39,7 @@ const EventRegistrations = () => {
     return (
         <div>
             <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn m-1">Choose Event</div>
+                <div tabIndex={0} role="button" className="btn btn-secondary m-1">Choose Event <IoMdArrowDropdown></IoMdArrowDropdown> </div>
                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                     {
                         events.map(event => <li ><button onClick={() => handleEvent(event._id)}>{event.title}</button></li>)

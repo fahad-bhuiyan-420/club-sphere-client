@@ -63,7 +63,7 @@ const ManageClubs = () => {
                                         <th>{index + 1}</th>
                                         <td>{club.clubName}</td>
                                         <td>{club.managerEmail}</td>
-                                        <td>{club.status}</td>
+                                        <td className={club.status === 'approved' ? 'text-green-400' : 'text-red-400'}>{club.status}</td>
                                         <td>{club.membershipFee} $</td>
                                         <td>{members?.membership}</td>
                                         <td><button onClick={() => handleStatus(club._id, 'approved')} className='btn'>

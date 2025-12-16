@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import useAuth from '../hooks/useAuth';
-import { useNavigate, useParams } from 'react-router';
+import {  useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const UpdateEvent = () => {
     const axiosSecure = useAxiosSecure();
-    const {id} = useParams();
+    const { id } = useParams();
     console.log(id);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleUpdateEvent = (data) => {
@@ -17,9 +17,16 @@ const UpdateEvent = () => {
             eventDate: new Date(data.eventDate),
             maxAttendees: Number(data.maxAttendees) || null,
         };
+
         axiosSecure.patch(`/events/${id}`, eventData).then(res => {
             console.log(res.data)
         })
+
+        Swal.fire({
+            title: "Updated!",
+            text: "Your Event has been Updated.",
+            icon: "success"
+        });
     }
 
     return (

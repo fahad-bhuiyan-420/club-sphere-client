@@ -13,7 +13,7 @@ const Clubs = () => {
     const { data: clubs = [], refetch } = useQuery({
         queryKey: ['clubs', searchText, sortKey, sortValue],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/clubs?search=${searchText}&sortedKey=${sortKey}&sortedValue=${sortValue}`)
+            const res = await axiosSecure.get(`/clubs?search=${searchText}&sortedKey=${sortKey}&sortedValue=${sortValue}&user=khalu@khala.com`)
             return res.data
         }
     })
@@ -65,7 +65,6 @@ const Clubs = () => {
                         <figure className="px-10 pt-10">
                             <img
                                 src={club.bannerImage}
-                                alt="Shoes"
                                 className="rounded-xl h-[200px] w-[300px] object-cover" />
                         </figure>
                         <div className="card-body items-center text-center">

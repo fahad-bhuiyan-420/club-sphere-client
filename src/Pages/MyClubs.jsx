@@ -1,32 +1,53 @@
-import {  useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const MyClubs = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
-    const {data: clubs = [], refetch} = useQuery({
-        queryKey: ['clubs'],
-        queryFn: async() => {
-           const res = await axiosSecure.get(`/clubs?email=${user.email}`);
-           return res.data;
+    const { data: clubs = [], refetch } = useQuery({
+        queryKey: ['clubs', user],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/clubs?email=${user.email}`);
+            return res.data;
         }
     })
 
     const handleDelete = (id) => {
-        axiosSecure.delete(`/clubs/${id}`)
-            .then(res => {
-                console.log(res.data);
-                refetch()
-            })
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/clubs/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch()
+                    })
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+
+
     }
 
     return (
         <div>
             <div className="flex justify-center  my-5 ">
-                <Link to='/dashboard/create-club'><button  className="btn btn-accent w-full">Create Club</button></Link>
+                <Link to='/dashboard/create-club'><button className="btn btn-accent w-full">Create Club</button></Link>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
@@ -43,9 +64,9 @@ const MyClubs = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { 
-                          clubs.map(club => <tr>
-                                <th>{1}</th>
+                        {
+                            clubs.map((club, i) => <tr>
+                                <th>{i + 1}</th>
                                 <td>{club.clubName}</td>
                                 <td>{club.category}</td>
                                 <td>{club.location}</td>
@@ -64,7 +85,7 @@ const MyClubs = () => {
                                     </button>
                                 </td>
 
-                            </tr>)  
+                            </tr>)
                         }
 
 
