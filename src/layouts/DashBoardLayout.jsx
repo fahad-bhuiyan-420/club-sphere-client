@@ -137,6 +137,30 @@ const DashBoardLayout = () => {
                                     </button>
                                 </Link>
                             </li>
+                            <li>
+                                <Link to='/dashboard/member/my-clubs'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                        <CiViewColumn />
+                                        <span className="is-drawer-close:hidden">My Clubs</span>
+                                    </button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/dashboard/my-events'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
+                                        <CiViewColumn />
+                                        <span className="is-drawer-close:hidden">My Events</span>
+                                    </button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/dashboard/payment-history'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+                                        <CiViewColumn />
+                                        <span className="is-drawer-close:hidden">Payment History</span>
+                                    </button>
+                                </Link>
+                            </li>
 
                         </ul>
                     </div>

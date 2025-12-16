@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useAxios from '../hooks/useAxios';
 import useAuth from '../hooks/useAuth';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import Loading from './Loading';
 
 const Club = () => {
     const {user} = useAuth();
@@ -12,7 +13,7 @@ const Club = () => {
     const axiosInstance = useAxios()
     const axiosSecure = useAxiosSecure();
 
-    const { data: club = {} } = useQuery({
+    const { data: club = {}, isLoading } = useQuery({
         queryKey: ['club'],
         queryFn: async () => {
             const res = await axiosInstance.get(`/clubs/${id}`)
@@ -60,6 +61,10 @@ const Club = () => {
                 refetch();
             })
         
+    }
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
     
 

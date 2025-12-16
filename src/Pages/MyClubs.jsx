@@ -1,4 +1,4 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
+import {  useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';

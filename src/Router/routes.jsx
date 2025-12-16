@@ -29,6 +29,9 @@ import ManageUsers from "../Pages/ManageUsers";
 import ManageClubs from "../Pages/ManageClubs";
 import ViewPayments from "../Pages/ViewPayments";
 import MemberOverview from "../Pages/MemberOverview";
+import MemberClubs from "../Pages/MemberClubs";
+import MyEvents from "../Pages/MyEvents";
+import PaymentHistory from "../Pages/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +48,7 @@ export const router = createBrowserRouter([
         },
         {
           path: 'events/:id',
-          Component: EventDetails
+          element: <PrivateRoute><EventDetails></EventDetails></PrivateRoute> 
         },
         {
             path: '/clubs',
@@ -53,7 +56,7 @@ export const router = createBrowserRouter([
         },
         {
           path: '/clubs/:id',
-          Component: Club
+          element: <PrivateRoute><Club></Club></PrivateRoute>
         },
         {
           path: '*',
@@ -138,8 +141,20 @@ export const router = createBrowserRouter([
         Component: MemberOverview
       },
       {
+        path: 'member/my-clubs',
+        Component: MemberClubs
+      },
+      {
+        path: 'my-events',
+        Component: MyEvents
+      },
+      {
         path: 'payment-success',
         Component: SuccesPage
+      },
+      {
+        path: 'payment-history',
+        Component: PaymentHistory
       },
       {
         path: 'payment-cancelled',

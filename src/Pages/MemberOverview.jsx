@@ -20,6 +20,13 @@ const MemberOverview = () => {
             return res.data
         }
     })
+    const {data: events = []} = useQuery({
+        queryKey: ['events'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/upcoming-events?email=${user.email}`);
+            return res.data
+        }
+    })
     console.log(members, registrations);
     return (
         <div className='m-5'>
@@ -43,22 +50,22 @@ const MemberOverview = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>User Email</th>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Type</th>
+                            <th>Upcoming Events</th>
+                            <th>Event Location</th>
+                            <th>Event Fees</th>
+                            <th>Max Attendees</th>
                             <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            registrations.map((reg, index) => <tr key={reg._id}>
+                            events.map((event, index) => <tr key={event._id}>
                             <th>{index + 1}</th>
-                            <td>{reg.userEmail}</td>
-                            <td>{reg.name}</td>
-                            <td>{reg.amount}</td>
-                            <td>{reg.type}</td>
-                            <td>{new Date(reg.createdAt).toLocaleDateString("en-GB")}</td>
+                            <td>{event.title}</td>
+                            <td>{event.location}</td>
+                            <td>{event.eventFee}</td>
+                            <td>{event.maxAttendees}</td>
+                            <td>{new Date(event.createdAt).toLocaleDateString("en-GB")}</td>
                         </tr>)
                         }
                         
