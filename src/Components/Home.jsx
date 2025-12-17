@@ -44,9 +44,9 @@ const Home = () => {
                 }
             </div>
 
-            <Link to='/clubs'><button className='btn btn-accent w-full mb-10 font-bold text-2xl'>Click To See More Clubs</button></Link>
+            <Link to='/clubs'><button className='btn btn-primary w-full mb-10 font-bold text-2xl'>Click To See More Clubs</button></Link>
 
-
+            
         </div>
     );
 };

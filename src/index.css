@@ -3,6 +3,42 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #6B8E23;
-  --color-secondary: teal;
+  --color-primary: #87CEEB;        /* Sky Blue */
+  --color-primary-content: #0F172A;
+
+  --color-secondary: #1E293B;      /* Slate Blue */
+  --color-secondary-content: #FFFFFF;
+
+  --color-accent: #22C55E;         /* Success / Accent */
+  --color-accent-content: #FFFFFF;
+
+  /* 🧱 Base Colors */
+  --color-base-100: #FFFFFF;       /* Page background */
+  --color-base-200: #F8FAFC;       /* Section background */
+  --color-base-300: #E2E8F0;       /* Borders / dividers */
+  --color-base-content: #0F172A;   /* Main text */
+
+  /* ℹ️ Status Colors */
+  --color-info: #0EA5E9;
+  --color-info-content: #FFFFFF;
+
+  --color-success: #22C55E;
+  --color-success-content: #FFFFFF;
+
+  --color-warning: #F59E0B;
+  --color-warning-content: #FFFFFF;
+
+  --color-error: #EF4444;
+  --color-error-content: #FFFFFF;
+
+  /* 🧩 UI Extras */
+  --radius-box: 1rem;
+  --radius-btn: 0.75rem;
+  --radius-badge: 0.5rem;
+
+  --border-btn: 1px;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+
+  --btn-focus-scale: 0.98;
 }

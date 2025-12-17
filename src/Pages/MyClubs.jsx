@@ -74,13 +74,13 @@ const MyClubs = () => {
 
                                 <td>
                                     <Link to={`/dashboard/update-club/${club._id}`}>
-                                        <button className='btn'>
+                                        <button className='btn btn-primary'>
                                             Update
                                         </button>
                                     </Link>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDelete(club._id)} className='btn'>
+                                    <button onClick={() => handleDelete(club._id)} className='btn bg-red-400'>
                                         Delete
                                     </button>
                                 </td>

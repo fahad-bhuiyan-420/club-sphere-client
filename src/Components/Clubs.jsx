@@ -58,7 +58,7 @@ const Clubs = () => {
                 </ul>
             </details>
 
-            <h2>{searchText}</h2>
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-10 my-10'>
                 {
                     clubs.map(club => <Link to={`/clubs/${club._id}`}><div key={club._id} className="card bg-base-100 w-full shadow-2xl hover:bg-base-300">

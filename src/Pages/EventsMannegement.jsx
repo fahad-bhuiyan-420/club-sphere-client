@@ -81,13 +81,13 @@ const EventsMannegement = () => {
                                 <td>{event.eventFee}</td>
                                 <td>
                                     <Link to={`/dashboard/update-event/${event._id}`}>
-                                        <button className='btn'>
+                                        <button className='btn btn-primary'>
                                             Update
                                         </button>
                                     </Link>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDelete(event._id)} className='btn'>
+                                    <button onClick={() => handleDelete(event._id)} className='btn bg-red-400'>
                                         Delete
                                     </button>
                                 </td>
