@@ -5,9 +5,10 @@ import useAxios from '../hooks/useAxios';
 import useAuth from '../hooks/useAuth';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import Loading from './Loading';
+import Swal from 'sweetalert2';
 
 const Club = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const params = useParams();
     const id = params.id;
     const axiosInstance = useAxios()
@@ -21,7 +22,7 @@ const Club = () => {
         }
     })
 
-    const {refetch, data: membership = {}} = useQuery({
+    const { refetch, data: membership = {} } = useQuery({
         queryKey: ['membership'],
         queryFn: async () => {
             const res = await axiosSecure.get(`http://localhost:3000/membership?email=${user.email}&clubId=${id}`);
@@ -35,6 +36,15 @@ const Club = () => {
 
 
     const handlePaidJoin = async () => {
+
+        if (!user) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "User not yet logged in!",
+            });
+        }
+
         const paymentInfo = {
             name: club.clubName,
             amount: club.membershipFee,
@@ -48,7 +58,15 @@ const Club = () => {
     }
 
     const handleFreeJoin = () => {
-        
+
+        if (!user) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "User not yet logged in!",
+            });
+        }
+
         const membershipInfo = {
             userEmail: user.email,
             clubId: id,
@@ -60,13 +78,13 @@ const Club = () => {
                 console.log(res.data);
                 refetch();
             })
-        
+
     }
 
     if (isLoading) {
         return <Loading></Loading>
     }
-    
+
 
     return (
         <div className="hero bg-base-200 min-h-screen space-y-5">
@@ -84,29 +102,29 @@ const Club = () => {
                         <span className='font-bold'>Location: </span> {club.location}
                     </p>
                     <p className="py-6 text-2xl font-semibold">
-                        <span className='font-bold'>MembershipFee: </span> {club.membershipFee}  
+                        <span className='font-bold'>MembershipFee: </span> {club.membershipFee}
                     </p>
 
                     {
                         club.status == "approved" && membership.clubId != id &&
-                         <>
-                         {
-                            club.membershipFee == 0 ? <button onClick={handleFreeJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for Free</button> : <button onClick={handlePaidJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for {club.membershipFee}$</button>
-                         }
-                         
-                         </> 
-                         
+                        <>
+                            {
+                                club.membershipFee == 0 ? <button onClick={handleFreeJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for Free</button> : <button onClick={handlePaidJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for {club.membershipFee}$</button>
+                            }
+
+                        </>
+
                     }
                     {
-                      club.status !== 'approved' && <h3 className='text-3xl font-semibold text-red-400'>{club.status}</h3>
+                        club.status !== 'approved' && <h3 className='text-3xl font-semibold text-red-400'>{club.status}</h3>
                     }
                     {
-                        membership.clubId == id  && <h3 className='font-bold text-xl text-accent'>Joined</h3>
+                        membership.clubId == id && <h3 className='font-bold text-xl text-accent'>Joined</h3>
                     }
                     {
-                        membership.clubId == id  && club.membershipFee !== 0 && <h3 className='font-bold text-xl text-red-400'>Payment Complete</h3> 
+                        membership.clubId == id && club.membershipFee !== 0 && <h3 className='font-bold text-xl text-red-400'>Payment Complete</h3>
                     }
-                    
+
                 </div>
             </div>
         </div>

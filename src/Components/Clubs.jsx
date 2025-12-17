@@ -48,7 +48,23 @@ const Clubs = () => {
                     type="search" required placeholder="Search" />
             </label>
 
-            <details className="dropdown flex justify-end">
+            <div>
+                <div className='flex justify-end'>
+                    <button className="btn " popoverTarget="popover-1" style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
+                        Sort By:
+                    </button>
+                </div>
+
+                <ul className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
+                    popover="auto" id="popover-1" style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */}>
+                    <li onClick={() => handleSort('createdAt -1')} ><a>Newest First</a></li>
+                    <li onClick={() => handleSort('createdAt 1')}><a>Oldest First</a></li>
+                    <li onClick={() => handleSort('membershipFee -1')}><a>Highest Fee</a></li>
+                    <li onClick={() => handleSort('membershipFee 1')}><a>Lowest Fee</a></li>
+                </ul>
+            </div>
+
+            {/* <details className="dropdown flex justify-end">
                 <summary className="btn ">Sort By:</summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box z-1  p-2 shadow-sm">
                     <li onClick={() => handleSort('createdAt -1')} ><a>Newest First</a></li>
@@ -56,7 +72,7 @@ const Clubs = () => {
                     <li onClick={() => handleSort('membershipFee -1')}><a>Highest Fee</a></li>
                     <li onClick={() => handleSort('membershipFee 1')}><a>Lowest Fee</a></li>
                 </ul>
-            </details>
+            </details> */}
 
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-10 my-10'>

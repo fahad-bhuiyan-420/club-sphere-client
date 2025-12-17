@@ -7,7 +7,7 @@ import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
 
-    const {user, logOut} = useAuth();
+    const { user, logOut } = useAuth();
 
     const handleLogOut = () => {
         logOut();
@@ -36,14 +36,14 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                {
-                                    links
-                                }
+                            {
+                                links
+                            }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">
-                        <Logo></Logo>
-                        </a>
+                    <p className="btn btn-ghost text-xl">
+                        <Link to='/'><Logo></Logo></Link>
+                    </p>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -53,11 +53,11 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <button onClick={handleLogOut} className="btn">LogOut</button> : <>
-                        <Link to='/login'><button className='btn mr-3'>LogIn</button></Link>
-                        <Link to='/register'><button className='btn'>Register</button></Link>
+                            <Link to='/login'><button className='btn mr-3'>LogIn</button></Link>
+                            <Link to='/register'><button className='btn'>Register</button></Link>
                         </>
                     }
-                    
+
                 </div>
             </div>
         </div>

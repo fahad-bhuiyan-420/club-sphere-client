@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
-import { FcApprove, FcDisapprove } from 'react-icons/fc';
+import { ImCross } from "react-icons/im";
 import Swal from 'sweetalert2';
+import { SiTicktick } from 'react-icons/si';
 
 const ManageClubs = () => {
     const axiosSecure = useAxiosSecure();
@@ -67,11 +68,11 @@ const ManageClubs = () => {
                                         <td>{club.membershipFee} $</td>
                                         <td>{members?.membership}</td>
                                         <td><button onClick={() => handleStatus(club._id, 'approved')} className='btn'>
-                                            <FcApprove />
+                                            <SiTicktick />
                                         </button></td>
                                         <td>
                                             <button onClick={() => handleStatus(club._id, 'rejected')} className='btn'>
-                                                <FcDisapprove />
+                                                <ImCross />
                                             </button>
                                         </td>
                                     </tr>)

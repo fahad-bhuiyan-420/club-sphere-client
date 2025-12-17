@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { FaPlus } from 'react-icons/fa';
 
 const MyClubs = () => {
     const { user } = useAuth();
@@ -47,7 +48,7 @@ const MyClubs = () => {
     return (
         <div>
             <div className="flex justify-center  my-5 ">
-                <Link to='/dashboard/create-club'><button className="btn btn-accent w-full">Create Club</button></Link>
+                <Link to='/dashboard/create-club'><button className="btn btn-accent w-full">Create Club <FaPlus /></button></Link>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

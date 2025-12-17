@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
         },
         {
           path: 'events/:id',
-          element: <PrivateRoute><EventDetails></EventDetails></PrivateRoute> 
+          element: <EventDetails></EventDetails> 
         },
         {
             path: '/clubs',
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
         },
         {
           path: '/clubs/:id',
-          element: <PrivateRoute><Club></Club></PrivateRoute>
+          element: <Club></Club>
         },
         {
           path: '*',

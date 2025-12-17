@@ -5,6 +5,7 @@ import useAxiosSecure from '../hooks/useAxiosSecure';
 import Loading from '../Components/Loading';
 import { Link,  } from 'react-router';
 import Swal from 'sweetalert2';
+import { FaPlus } from 'react-icons/fa';
 
 const EventsMannegement = () => {
     const { user } = useAuth();
@@ -53,7 +54,7 @@ const EventsMannegement = () => {
 
             <div className="flex justify-center  my-5 ">
                 <Link to='/dashboard/create-event'>
-                    <button className="btn btn-accent w-full">Create Event</button>
+                    <button className="btn btn-accent w-full">Create Event <FaPlus /></button>
                 </Link>
             </div>
 

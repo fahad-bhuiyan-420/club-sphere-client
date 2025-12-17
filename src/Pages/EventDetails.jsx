@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import UseAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const EventDetails = () => {
     const { user } = useAuth();
@@ -17,7 +18,7 @@ const EventDetails = () => {
         }
     })
 
-    const {refetch, data: eventRegistration = {} } = useQuery({
+    const { refetch, data: eventRegistration = {} } = useQuery({
         queryKey: ['eventRegistration'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/eventRegistrations?eventId=${id}&email=${user.email}`)
@@ -26,6 +27,15 @@ const EventDetails = () => {
     })
 
     const handlePayment = async () => {
+
+        if (!user) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "User not yet logged in!",
+            });
+        }
+
         const paymentInfo = {
             name: event.title,
             amount: event.eventFee,
@@ -41,6 +51,15 @@ const EventDetails = () => {
     }
 
     const handleFreeJoin = () => {
+
+        if (!user) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "User not yet logged in!",
+            });
+        }
+
         const eventRegistrationInfo = {
             userEmail: user.email,
             clubId: event.clubId,

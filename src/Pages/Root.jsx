@@ -13,7 +13,7 @@ const Root = () => {
     }
 
     return (
-        <div className='max-w-[1500px] mx-auto'>
+        <div className='mx-10 md:mx-30'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>

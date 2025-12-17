@@ -14,7 +14,7 @@ const UpdateEvent = () => {
             ...data,
             isPaid: data.isPaid === "true",
             eventFee: data.isPaid === "true" ? Number(data.eventFee) : 0,
-            eventDate: new Date(data.eventDate),
+            eventDate: new Date(data.eventDate).toLocaleDateString("en-GB"),
             maxAttendees: Number(data.maxAttendees) || null,
         };
 
