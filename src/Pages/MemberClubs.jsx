@@ -30,7 +30,13 @@ const MemberClubs = () => {
                         <div className="card-body items-center text-center">
                             <h2 className="card-title">{club.clubName}</h2>
                             <p className="card-title">Location: {club.location}</p>
-                            <p className="card-title">Membership Status: {club.membershipStatus}</p>
+                            <p className="card-title">Membership Status: <span className={
+                                club.membershipStatus === 'expired'
+                                    ? 'text-red-400'
+                                    : club.membershipStatus === 'active'
+                                        ? 'text-green-400'
+                                        : 'text-yellow-200'
+                            }>{club.membershipStatus}</span></p>
                             <div className="card-actions">
                             </div>
                         </div>

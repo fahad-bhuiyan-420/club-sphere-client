@@ -34,7 +34,7 @@ const MyEvents = () => {
                             <th>{index + 1}</th>
                             <td>{event.title}</td>
                             <td>{event.clubName}</td>
-                            <td>{event.registrationStatus}</td>
+                            <td className='text-green-400'>{event.registrationStatus}</td>
                             <td>{new Date(event.createdAt).toLocaleDateString("en-GB")}</td>
                         </tr>)
                         }

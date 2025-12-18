@@ -110,25 +110,31 @@ const Club = () => {
                     </p>
 
                     {
-                        club.status == "approved" && membership.clubId != id &&
-                        <>
+                        membership.status === 'expired' ?  <h3 className='font-bold text-xl text-red-400'>Expired</h3>  : <>
                             {
-                                club.membershipFee == 0 ? <button onClick={handleFreeJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for Free</button> : <button onClick={handlePaidJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for {club.membershipFee}$</button>
+                                club.status == "approved" && membership.clubId != id &&
+                                <>
+                                    {
+                                        club.membershipFee == 0 ? <button onClick={handleFreeJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for Free</button> : <button onClick={handlePaidJoin} className="btn btn-success w-[50%] text-black text-2xl font-bold">Join Club for {club.membershipFee}$</button>
+                                    }
+
+                                </>
+
                             }
-
+                            {
+                                club.status !== 'approved' && <h3 className='text-3xl font-semibold text-red-400'>{club.status}</h3>
+                            }
+                            {
+                                membership.clubId == id && <h3 className='font-bold text-xl text-accent'>Joined</h3>
+                            }
+                            {
+                                membership.clubId == id && club.membershipFee !== 0 && <h3 className='font-bold text-xl text-red-400'>Payment Complete</h3>
+                            }
                         </>
+                    }
 
-                    }
-                    {
-                        club.status !== 'approved' && <h3 className='text-3xl font-semibold text-red-400'>{club.status}</h3>
-                    }
-                    {
-                        membership.clubId == id && <h3 className='font-bold text-xl text-accent'>Joined</h3>
-                    }
-                    {
-                        membership.clubId == id && club.membershipFee !== 0 && <h3 className='font-bold text-xl text-red-400'>Payment Complete</h3>
-                    }
-                    {}
+
+                    { }
 
                 </div>
             </div>
