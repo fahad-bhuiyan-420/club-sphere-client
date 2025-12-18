@@ -30,13 +30,13 @@ const ClubMembers = () => {
     }
 
     const handleClub = (id) => {
-        console.log(id);
+        // console.log(id);
         setId(id);
         refetch()
     }
 
     const handleExpired = (id, status) => {
-        console.log(id, status)
+        // console.log(id, status)
 
         Swal.fire({
             title: "Are you sure?",
