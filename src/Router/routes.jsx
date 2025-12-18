@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <PrivateRoute><h2></h2></PrivateRoute>
+        element: <h2></h2>
       },
       {
         path: 'my-clubs',
