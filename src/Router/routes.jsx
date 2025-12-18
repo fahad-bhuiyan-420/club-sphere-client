@@ -118,7 +118,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'event-registrations',
-        element: <EventRegistrations></EventRegistrations>
+        element: <ClubManagerRoute><EventRegistrations></EventRegistrations></ClubManagerRoute>
       },
       {
         path: 'admin-overview',

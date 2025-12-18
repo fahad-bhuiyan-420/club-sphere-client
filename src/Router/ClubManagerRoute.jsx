@@ -6,7 +6,7 @@ import Loading from '../Components/Loading';
 const ClubManagerRoute = ({children}) => {
 
     const {role, isLoading} = UseRole()
-
+    // console.log(role);
     if (isLoading) {
         return <Loading></Loading>
     }

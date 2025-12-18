@@ -46,7 +46,7 @@ const AdminOverView = () => {
             return res.data
         }
     })
-    console.log(BarData);
+    // console.log(BarData);
 
     const totalEventFees = eventRegistrations.reduce((total, event) => {
         return total + (event.amount || 0);
