@@ -93,7 +93,7 @@ const ClubMembers = () => {
                             members.map((mem, index) => <tr className="bg-base-200" key={mem._id}>
                                 <th>{index + 1}</th>
                                 <td>{mem.userEmail}</td>
-                                <td>{mem.joinedAt}</td>
+                                <td>{new Date(mem.joinedAt).toLocaleDateString("en-GB")}</td>
                                 <td className={mem.status === 'active' ? 'text-green-400' : 'text-red-400'}>{mem.status}</td>
                                 <td>
                                     <button onClick={() => handleExpired(mem._id, 'expired')} className='btn '>

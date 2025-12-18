@@ -83,7 +83,7 @@ const EventDetails = () => {
                 <strong>Description:</strong> {event.description}
             </p>
             <p className="mb-2">
-                <strong>Date:</strong> {new Date(event.eventDate).toLocaleDateString()}
+                <strong>Date:</strong> {(event.eventDate)}
             </p>
             <p className="mb-2">
                 <strong>Location:</strong> {event.location}

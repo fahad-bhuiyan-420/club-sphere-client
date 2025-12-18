@@ -64,8 +64,8 @@ const EventRegistrations = () => {
                             registrations.map((reg, index) => <tr className="bg-base-200" key={reg._id}>
                                 <th>{index + 1}</th>
                                 <td>{reg.userEmail}</td>
-                                <td>{reg.registeredAt}</td>
-                                <td>{reg.status}</td>
+                                <td>{new Date(reg.registeredAt).toLocaleDateString("en-GB")}</td>
+                                <td className={reg.status == 'registered' ? 'text-green-400' : 'text-red-400'}>{reg.status}</td>
                             </tr>)
                         }
 

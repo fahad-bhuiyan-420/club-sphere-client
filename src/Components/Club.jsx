@@ -34,6 +34,10 @@ const Club = () => {
         refetch()
     }, [])
 
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
 
     const handlePaidJoin = async () => {
 
@@ -124,6 +128,7 @@ const Club = () => {
                     {
                         membership.clubId == id && club.membershipFee !== 0 && <h3 className='font-bold text-xl text-red-400'>Payment Complete</h3>
                     }
+                    {}
 
                 </div>
             </div>

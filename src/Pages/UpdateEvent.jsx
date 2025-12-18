@@ -8,7 +8,10 @@ const UpdateEvent = () => {
     const axiosSecure = useAxiosSecure();
     const { id } = useParams();
     console.log(id);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const paid = watch('isPaid')
+
     const handleUpdateEvent = (data) => {
         const eventData = {
             ...data,
@@ -94,7 +97,7 @@ const UpdateEvent = () => {
                 </div>
 
                 {/* Event Fee (only if paid) */}
-                {
+                { paid === 'true' &&
                     <div>
                         <label className="font-medium">Event Fee</label>
                         <input

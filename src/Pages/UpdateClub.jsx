@@ -79,7 +79,7 @@ const UpdateClub = () => {
                         type="text"
                         placeholder="Enter Banner Image URL"
                         className="input input-bordered w-full"
-                        {...register("banner", { required: "Banner is required" })}
+                        {...register("bannerImage", { required: "Banner is required" })}
                     />
                 </div>
 
