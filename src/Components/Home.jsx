@@ -21,7 +21,7 @@ const Home = () => {
     })
 
     const handleClub = (id) => {
-        console.log(id);
+        // console.log(id);
         navigate(`/clubs/${id}`)
     }
 

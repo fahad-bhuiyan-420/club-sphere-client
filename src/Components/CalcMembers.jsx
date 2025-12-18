@@ -12,7 +12,7 @@ const CalcMembers = ({club, members, setMembers}) => {
         }
     })
     setMembers(members + membership.length)
-    console.log(members)
+    // console.log(members)
     return (
         <div>
             
