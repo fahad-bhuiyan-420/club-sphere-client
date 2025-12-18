@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 const axiosInstance = axios.create({
-        baseURL: 'https://club-sphere-server-xi.vercel.app/'
+        baseURL: 'https://club-sphere-server-xi.vercel.app'
     })
 
 const useAxios = () => {

@@ -25,7 +25,7 @@ const Club = () => {
     const { refetch, data: membership = {} } = useQuery({
         queryKey: ['membership'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`http://localhost:3000/membership?email=${user.email}&clubId=${id}`);
+            const res = await axiosSecure.get(`/membership?email=${user.email}&clubId=${id}`);
             return res.data
         }
     })

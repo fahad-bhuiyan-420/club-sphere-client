@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-    baseURL: 'https://club-sphere-server-xi.vercel.app/'
+    baseURL: 'https://club-sphere-server-xi.vercel.app'
 })
 
 const useAxiosSecure = () => {
