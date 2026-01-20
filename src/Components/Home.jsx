@@ -3,120 +3,137 @@ import Banner from './Banner';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../hooks/useAxios';
 import { Link, useNavigate } from 'react-router';
-import { MdArrowDropDownCircle } from 'react-icons/md';
-
+import { MdArrowDropDownCircle, MdOutlineExplore, MdGroups, MdEventAvailable, MdAutoGraph } from 'react-icons/md';
 
 const Home = () => {
     const axiosInstance = useAxios();
-
     const navigate = useNavigate();
-
 
     const { data: clubs = [] } = useQuery({
         queryKey: ['clubs'],
         queryFn: async () => {
-            const res = await axiosInstance.get('/clubs?sortedKey=createdAt&sortedValue=1')
-            return res.data
+            const res = await axiosInstance.get('/clubs?sortedKey=createdAt&sortedValue=1');
+            return res.data;
         }
-    })
+    });
 
     const handleClub = (id) => {
-        // console.log(id);
-        navigate(`/clubs/${id}`)
-    }
+        navigate(`/clubs/${id}`);
+    };
 
     return (
-        <div className='my-5'>
+        <div className='min-h-screen bg-slate-50'>
+            {/* Banner Section */}
+            <Banner />
 
-            <Banner></Banner>
+            {/* Clubs Grid Section */}
+            <div className='max-w-7xl mx-auto px-4 py-16'>
+                <div className="flex flex-col items-center mb-12">
+                    <h2 className="text-4xl font-extrabold text-slate-900 mb-2">Featured Clubs</h2>
+                    <div className="h-1.5 w-20 bg-indigo-600 rounded-full"></div>
+                </div>
 
-
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-10 my-10'>
-                {
-                    clubs.slice(0, 6).map(club => <div onClick={() => handleClub(club._id)} key={club._id} className="card bg-base-100 w-full shadow-2xl hover:bg-base-300">
-                        <figure className="px-10 pt-10">
-                            <img
-                                src={club.bannerImage}
-                                alt="Shoes"
-                                className="rounded-xl h-[200px] w-[300px] object-cover" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">{club.clubName}</h2>
-                            <p>{club.description}</p>
-                            <div className="card-actions">
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                    {clubs.slice(0, 6).map(club => (
+                        <div 
+                            onClick={() => handleClub(club._id)} 
+                            key={club._id} 
+                            className="group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:-translate-y-2"
+                        >
+                            <div className="relative overflow-hidden h-[220px]">
+                                <img
+                                    src={club.bannerImage}
+                                    alt={club.clubName}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                    <span className="text-white font-medium">View Details →</span>
+                                </div>
+                            </div>
+                            
+                            <div className="p-8">
+                                <h2 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors">
+                                    {club.clubName}
+                                </h2>
+                                <p className="text-slate-600 line-clamp-2 leading-relaxed">
+                                    {club.description}
+                                </p>
                             </div>
                         </div>
-                    </div>)
-                }
+                    ))}
+                </div>
+
+                <div className="mt-12 text-center">
+                    <Link to='/clubs'>
+                        <button className='group flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg shadow-indigo-200 transition-all w-full md:w-auto mx-auto'>
+                            Explore All Clubs 
+                            <MdArrowDropDownCircle className="group-hover:rotate-180 transition-transform duration-300" />
+                        </button>
+                    </Link>
+                </div>
             </div>
 
-            <Link to='/clubs'><button className='btn btn-primary w-full mb-10 font-bold text-2xl'>Click To See More Clubs <MdArrowDropDownCircle /></button></Link>
+            {/* How ClubSphere Works - Steps Section */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4">
+                    <h2 className="text-4xl font-extrabold text-center text-slate-900 mb-16">
+                        How <span className="text-indigo-600">ClubSphere</span> Works
+                    </h2>
 
-            {/* How ClubSphere Works */}
-            <section className="my-20 px-4">
-                <h2 className="text-4xl font-bold text-center mb-12">
-                    How ClubSphere Works
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-                    <div className="p-6 rounded-2xl shadow-lg bg-base-100 hover:shadow-2xl transition">
-                        <div className="text-5xl mb-4">🔍</div>
-                        <h3 className="text-xl font-semibold mb-2">Explore Clubs</h3>
-                        <p>Browse clubs by category, location, or popularity.</p>
-                    </div>
-
-                    <div className="p-6 rounded-2xl shadow-lg bg-base-100 hover:shadow-2xl transition">
-                        <div className="text-5xl mb-4">🤝</div>
-                        <h3 className="text-xl font-semibold mb-2">Join a Club</h3>
-                        <p>Request membership and connect with like-minded people.</p>
-                    </div>
-
-                    <div className="p-6 rounded-2xl shadow-lg bg-base-100 hover:shadow-2xl transition">
-                        <div className="text-5xl mb-4">📅</div>
-                        <h3 className="text-xl font-semibold mb-2">Attend Events</h3>
-                        <p>Participate in meetups, workshops, and activities.</p>
-                    </div>
-
-                    <div className="p-6 rounded-2xl shadow-lg bg-base-100 hover:shadow-2xl transition">
-                        <div className="text-5xl mb-4">🚀</div>
-                        <h3 className="text-xl font-semibold mb-2">Grow Together</h3>
-                        <p>Build skills, friendships, and leadership experience.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                        {[
+                            { icon: <MdOutlineExplore />, title: "Explore", desc: "Browse clubs by category or location.", color: "bg-blue-50 text-blue-600" },
+                            { icon: <MdGroups />, title: "Join", desc: "Connect with like-minded people.", color: "bg-purple-50 text-purple-600" },
+                            { icon: <MdEventAvailable />, title: "Attend", desc: "Participate in workshops & events.", color: "bg-indigo-50 text-indigo-600" },
+                            { icon: <MdAutoGraph />, title: "Grow", desc: "Build leadership & skills.", color: "bg-teal-50 text-teal-600" },
+                        ].map((step, idx) => (
+                            <div key={idx} className="relative flex flex-col items-center">
+                                <div className={`w-20 h-20 ${step.color} rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-sm`}>
+                                    {step.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-800 mb-2">{step.title}</h3>
+                                <p className="text-slate-500 text-center">{step.desc}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Why Join a Club */}
-            <section className="my-20 px-4 bg-base-200 py-16 rounded-3xl">
-                <h2 className="text-4xl font-bold text-center mb-12">
-                    Why Join a Club?
-                </h2>
+            {/* Why Join a Club - Benefits Section */}
+            <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
+                {/* Decorative background element */}
+                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"></div>
+                
+                <div className="max-w-7xl mx-auto px-4 relative z-10">
+                    <h2 className="text-4xl font-extrabold text-center mb-16">Why Join a Club?</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div className="p-8 bg-base-100 rounded-2xl shadow-lg">
-                        <h3 className="text-2xl font-semibold mb-3">🌱 Personal Growth</h3>
-                        <p>
-                            Develop leadership, communication, and teamwork skills beyond academics.
-                        </p>
-                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="p-10 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl hover:border-indigo-500 transition-colors">
+                            <div className="text-indigo-400 text-4xl mb-6">🌱</div>
+                            <h3 className="text-2xl font-bold mb-4">Personal Growth</h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                Develop leadership, communication, and teamwork skills that your future career demands.
+                            </p>
+                        </div>
 
-                    <div className="p-8 bg-base-100 rounded-2xl shadow-lg">
-                        <h3 className="text-2xl font-semibold mb-3">🌍 Community</h3>
-                        <p>
-                            Meet people who share your interests and build lasting connections.
-                        </p>
-                    </div>
+                        <div className="p-10 bg-indigo-600 rounded-3xl shadow-xl shadow-indigo-900/20 transform md:-translate-y-4">
+                            <div className="text-white text-4xl mb-6">🌍</div>
+                            <h3 className="text-2xl font-bold mb-4 text-white">Vibrant Community</h3>
+                            <p className="text-indigo-100 leading-relaxed">
+                                Escape the bubble. Meet people who share your passions and build connections that last a lifetime.
+                            </p>
+                        </div>
 
-                    <div className="p-8 bg-base-100 rounded-2xl shadow-lg">
-                        <h3 className="text-2xl font-semibold mb-3">🎯 Opportunities</h3>
-                        <p>
-                            Gain access to exclusive events, workshops, and career opportunities.
-                        </p>
+                        <div className="p-10 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl hover:border-indigo-500 transition-colors">
+                            <div className="text-indigo-400 text-4xl mb-6">🎯</div>
+                            <h3 className="text-2xl font-bold mb-4">Exclusive Access</h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                Gain priority access to specialized workshops, industry meetups, and unique career opportunities.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
-
-
-
         </div>
     );
 };

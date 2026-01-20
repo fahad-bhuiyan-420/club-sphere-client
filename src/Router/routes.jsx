@@ -32,6 +32,7 @@ import MemberOverview from "../Pages/MemberOverview";
 import MemberClubs from "../Pages/MemberClubs";
 import MyEvents from "../Pages/MyEvents";
 import PaymentHistory from "../Pages/PaymentHistory";
+import HowItWorks from "../Pages/HowItWorks";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
         {
             path: '/events',
             Component: Events
+        },
+        {
+            path: '/how-it-works', // New Route
+            Component: HowItWorks
         },
         {
           path: 'events/:id',

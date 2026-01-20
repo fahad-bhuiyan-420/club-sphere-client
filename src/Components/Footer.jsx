@@ -1,104 +1,54 @@
 import React from 'react';
+import { FaFacebookF, FaPhoneAlt } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
-
-                {/* Brand */}
-                <aside>
-                    <h2 className="text-2xl font-bold">ClubSphere</h2>
-                    <p className="max-w-xs">
-                        Connecting students and communities through clubs, events, and shared interests.
+        <footer className="bg-white border-t border-slate-100 py-12 px-6">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                
+                {/* Brand & Description */}
+                <div className="text-center md:text-left space-y-3">
+                    <h2 className="text-3xl font-black text-slate-800 tracking-tighter">
+                        ClubSphere<span className="text-indigo-600">.</span>
+                    </h2>
+                    <p className="max-w-sm text-slate-500 font-medium leading-relaxed text-sm">
+                        An integrated ecosystem designed to bridge the gap between students, 
+                        innovative clubs, and impactful community events.
                     </p>
-                    <p className="text-sm mt-2">© {new Date().getFullYear()} ClubSphere. All rights reserved.</p>
-                </aside>
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest pt-2">
+                        © {new Date().getFullYear()} ClubSphere Engineering.
+                    </p>
+                </div>
 
-                {/* Platform */}
-                <nav>
-                    <h6 className="footer-title">Platform</h6>
-                    <a className="link link-hover">Browse Clubs</a>
-                    <a className="link link-hover">Create a Club</a>
-                    <a className="link link-hover">Upcoming Events</a>
-                    <a className="link link-hover">Membership Plans</a>
-                </nav>
+                {/* Direct Action Links */}
+                <div className="flex items-center gap-4">
+                    {/* Facebook Link */}
+                    <a 
+                        href="https://www.facebook.com/fahadahmedakamantu" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="group flex items-center gap-3 bg-slate-50 hover:bg-indigo-600 px-6 py-3 rounded-2xl transition-all duration-300 shadow-sm"
+                    >
+                        <div className="bg-white p-2 rounded-lg text-indigo-600 group-hover:scale-110 transition-transform">
+                            <FaFacebookF size={18} />
+                        </div>
+                        <span className="font-black text-slate-700 group-hover:text-white text-sm">Facebook</span>
+                    </a>
 
-                {/* Company */}
-                <nav>
-                    <h6 className="footer-title">Company</h6>
-                    <a className="link link-hover">About ClubSphere</a>
-                    <a className="link link-hover">Contact Us</a>
-                    <a className="link link-hover">Careers</a>
-                    <a className="link link-hover">Privacy Policy</a>
-                </nav>
-
-                {/* Social */}
-                <nav>
-                    <h6 className="footer-title">Connect With Us</h6>
-                    <div className="grid grid-flow-col gap-4">
-
-                        {/* Twitter/X */}
-                        <a aria-label="Twitter">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775
-                            1.017-.609 1.798-1.574 2.165-2.724
-                            -.951.564-2.005.974-3.127 1.195
-                            -.897-.957-2.178-1.555-3.594-1.555
-                            -3.179 0-5.515 2.966-4.797 6.045
-                            -4.091-.205-7.719-2.165-10.148-5.144
-                            -1.29 2.213-.669 5.108 1.523 6.574
-                            -.806-.026-1.566-.247-2.229-.616
-                            -.054 2.281 1.581 4.415 3.949 4.89
-                            -.693.188-1.452.232-2.224.084
-                            .626 1.956 2.444 3.379 4.6 3.419
-                            -2.07 1.623-4.678 2.348-7.29 2.04
-                            2.179 1.397 4.768 2.212 7.548 2.212
-                            9.142 0 14.307-7.721 13.995-14.646
-                            .962-.695 1.797-1.562 2.457-2.549z"/>
-                            </svg>
-                        </a>
-
-                        {/* YouTube */}
-                        <a aria-label="YouTube">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0
-                            -3.897.266-4.356 2.62-4.385 8.816
-                            .029 6.185.484 8.549 4.385 8.816
-                            3.6.245 11.626.246 15.23 0
-                            3.897-.266 4.356-2.62 4.385-8.816
-                            -.029-6.185-.484-8.549-4.385-8.816z
-                            M9 16v-8l8 3.993-8 4.007z"/>
-                            </svg>
-                        </a>
-
-                        {/* Facebook */}
-                        <a aria-label="Facebook">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4
-                            v-1.667c0-.955.192-1.333 1.115-1.333
-                            h2.885v-5h-3.808c-3.596 0-5.192 1.583
-                            -5.192 4.615v3.385z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </nav>
-            </footer>
-        </div>
+                    {/* Contact Link */}
+                    <a 
+                        href="tel:+88801717665101"
+                        className="group flex items-center gap-3 bg-slate-50 hover:bg-slate-900 px-6 py-3 rounded-2xl transition-all duration-300 shadow-sm"
+                    >
+                        <div className="bg-white p-2 rounded-lg text-slate-900 group-hover:scale-110 transition-transform">
+                            <FaPhoneAlt size={16} />
+                        </div>
+                        <span className="font-black text-slate-700 group-hover:text-white text-sm">Contact</span>
+                    </a>
+                </div>
+                
+            </div>
+        </footer>
     );
 };
 

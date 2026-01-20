@@ -1,31 +1,75 @@
 import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-import img1 from '../assets/clubPhoto.png'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { useNavigate } from 'react-router';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 const Banner = () => {
+    const navigate = useNavigate();
+
+    const slides = [
+        {
+            image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070",
+            title: "Discover Your Passion",
+            subtitle: "Join the most vibrant student communities on campus.",
+            primaryBtnText: "View Clubs",
+            primaryPath: "/clubs"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070",
+            title: "Connect & Collaborate",
+            subtitle: "Build lifelong friendships and professional networks.",
+            primaryBtnText: "View Events",
+            primaryPath: "/events"
+        }
+    ];
+
     return (
-         <Carousel 
-         autoPlay={true}
-         infiniteLoop={true}
-         showThumbs={false}
-         transitionTime={'1000'}
-         
-         >
-                <div className='w-[900px] mx-auto'>
-                    <img src='https://www.ncgrl.vic.gov.au/wp-content/uploads/2024/11/Book-Club-scaled.jpg' className="w-full h-100 object-cover rounded-lg" />
-                    <p className="font-bold text-xl">Book Club</p>
-                </div>
-                <div className='w-[900px] mx-auto'>
-                    <img src='https://3.files.edl.io/5473/22/10/31/141246-bce7e542-29db-4720-a4a1-d8204534c77f.jpg' className="w-full h-100 object-cover rounded-lg" />
-                    <p className="font-bold text-xl">Tech Club</p>
-                </div>
-                <div className='w-[900px] mx-auto'>
-                    <img src='https://images.squarespace-cdn.com/content/v1/5873ba6abebafb70ccf6656f/09949c5b-e26f-4e31-9ec1-7c1845558bfd/Photo+club+banner.jpg' className="w-full h-100 object-cover rounded-lg" />
-                    <p className="font-bold text-xl">Photography Club</p>
-                </div>
-               
-            </Carousel>
+        <div className="relative h-[500px] md:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl my-6">
+            <Swiper
+                modules={[Navigation, Pagination, Autoplay, EffectFade]}
+                effect={'fade'}
+                autoplay={{ delay: 5000 }}
+                pagination={{ clickable: true }}
+                navigation={true}
+                className="h-full w-full"
+            >
+                {slides.map((slide, index) => (
+                    <SwiperSlide key={index}>
+                        <div className="relative h-full w-full">
+                            <img src={slide.image} className="absolute inset-0 w-full h-full object-cover" alt="" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent"></div>
+
+                            <div className="relative h-full flex flex-col justify-center px-8 md:px-20 max-w-4xl space-y-6">
+                                <h1 className="text-4xl md:text-6xl font-black text-white leading-tight">
+                                    {slide.title}
+                                </h1>
+                                <p className="text-lg text-slate-200 max-w-xl">{slide.subtitle}</p>
+                                
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <button 
+                                        onClick={() => navigate(slide.primaryPath)}
+                                        className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all hover:-translate-y-1"
+                                    >
+                                        {slide.primaryBtnText}
+                                    </button>
+                                    <button 
+                                        onClick={() => navigate('/how-it-works')}
+                                        className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 transition-all"
+                                    >
+                                        How it Works
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
     );
 };
 
